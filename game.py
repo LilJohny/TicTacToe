@@ -5,10 +5,21 @@ import random
 
 
 class Opponent:
+    """Class representing opponents move"""
     def __init__(self, board):
+        """Method initializes new Opponent class
+        
+        Args:
+            board (board.Board): Board for this opponent
+        """
         self._board = board
 
     def make_move(self):
+        """Method makes computer`s move
+        
+        Returns:
+            BSTree: New board with move
+        """
         tree = BSTree()
 
         def _move_helper(board, tree):
@@ -49,6 +60,14 @@ class Opponent:
             return random.choice([tree.left, tree.right])
 
     def score(self, leafs):
+        """Method scores given leafs of subtree
+        
+        Args:
+            leafs (list): List of subtree to score
+        
+        Returns:
+            int: Score
+        """
         tree_score = 0
         for leaf in leafs:
             if leaf.data.has_winner() == 1:

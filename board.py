@@ -3,6 +3,11 @@
 import random
 
 def generate_winning_combinations():
+    """Function generates all wining combinations for tictactoe board
+    
+    Returns:
+        list: All wining combinations
+    """
     combinations = []
     for i in range(3):
         combination1 = []
@@ -18,6 +23,7 @@ def generate_winning_combinations():
     return combinations
 
 class Board:
+    """Class representing tictactoe board"""
     NOUGHT = 1
     CROSS = -1
     EMPTY = 0
@@ -30,12 +36,23 @@ class Board:
     WINNING_COMBINATIONS = generate_winning_combinations()
 
     def __init__(self):
+        """Method initializes new instance of Board class
+        """
         self.cells = [[0] * 3 for _ in range(3)]
         self.last_move = Board.NOUGHT
         self.number_of_moves = 0
 
 
     def make_move(self, cell, last_move=None):
+        """Method makes move for given positions
+        
+        Args:
+            cell (tuple): Coordinates 
+            last_move (int, optional): 1 for player, -1 for computer. Defaults to None.
+        
+        Returns:
+            bool: True if move was successful else False
+        """
         if self.cells[cell[0]][cell[1]] != 0:
             return False
         self.last_move = -self.last_move if last_move is  None else last_move
@@ -57,6 +74,11 @@ class Board:
 
 
     def get_possible_moves(self):
+        """Method gets all possible moves for current state of board
+        
+        Returns:
+            list: List of all possible moves
+        """
         possible_moves = []
         for i in range(3):
             for j in range(3):
@@ -65,6 +87,11 @@ class Board:
         return possible_moves
 
     def get_random_move(self):
+        """Method gets random move for current state of board
+        
+        Returns:
+            tuple: Coordinates for random move
+        """
         possible_moves = self.get_possible_moves()
         cell = random.choice(possible_moves)
         return cell

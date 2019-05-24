@@ -16,9 +16,22 @@ class BSTree:
         self.data = data
 
     def __iter__(self):
+        """Method handles iterating through tree
+        
+        Returns:
+            iterator: Iterator through this object
+        """
         items = []
 
         def _iter_helper(node):
+            """Function that helps iterate through this object
+            
+            Args:
+                node (BSTree): Node to get child
+            
+            Returns:
+                list: Empty list if has no childs
+            """
             if node is None:
                 return []
             else:
@@ -31,30 +44,65 @@ class BSTree:
             yield item
 
     def set_left(self, value):
+        """Method sets left child
+        
+        Args:
+            value (any): Left child value to set
+        """
         self._left = BSTree(value)
 
     def get_left(self):
+        """Method gets left child
+        
+        Returns:
+            any: Left child
+        """
         return self._left
 
     left = property(get_left, set_left)
 
     def set_right(self, value):
+        """Method sets right child
+        
+        Args:
+            value (any): Right child
+        """
         self._right = BSTree(value)
 
     def get_right(self):
+        """Method gets right child
+        
+        Returns:
+            any: Right child
+        """
         return self._right
 
     right = property(get_right, set_right)
 
     def set_parent(self, value):
+        """Method sets parent
+        
+        Args:
+            value (any): Parent
+        """
         self._parent = value
 
     def get_parent(self):
+        """Method gets parent
+        
+        Returns:
+            any: Parent
+        """
         return self._parent
 
     parent = property(get_parent, set_parent)
 
     def get_leafs(self):
+        """Method gets leafs
+        
+        Returns:
+            list: Lis of leafs of this tree
+        """
         elements = list(self.__iter__())
         leafs = list(
             filter(lambda x: x.left is None and x.right is None, elements))
