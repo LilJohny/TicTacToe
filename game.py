@@ -67,7 +67,7 @@ def main():
         print(board)
         print("Make your move:")
         move = input("Type your move in format XxY: ")
-        while not (len(move.split("x")) != 2 and  all(
+        while not (len(move.split("x")) == 2 and  all(
                 map(lambda x: x.isdigit() and 1 <= int(x) <= 3, move.split("x")))):
             print("You entered wrong move")
             move = input("Type your move in format XxY: ")
